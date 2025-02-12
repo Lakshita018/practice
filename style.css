@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rakkas&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-family: "Pirata One", serif;
+    text-align: center;
+    text-transform: capitalize;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100vh; /* Full-page background */
+    width: 100%;
+    background: linear-gradient(to bottom, black, #550303);
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Title Styling */
+h1 {
+    font-size: 7.5rem;
+    font-weight: bolder;
+    padding-bottom: 20px;
+    text-shadow: 0 0 9px red;
+    margin-bottom: 4rem;
+}
+
+/* Carousel Wrapper */
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    padding: 20px 0;
+}
+
+/* Carousel Inner */
+.carousel {
+    overflow: hidden;
+    width: 100%;
+}
+
+.team-slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    justify-content: center;
+    gap: 2rem; /* Adjust spacing */
+}
+
+/* Default Card Styling */
+.grid {
+    border-radius: 12px;
+    box-shadow: 0px 0px 15px rgb(207, 199, 199);
+    border: 2px solid rgb(221, 208, 208);
+    background-color: white;
+    width: 400px; /* Square */
+    height: 400px; /* Square */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s;
+}
+
+/* Image Styling */
+.image {
+    width: 100%;
+    height: 65%;
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px 12px 0px 0px;
+    object-fit: cover;
+}
+
+/* Name Styling */
+.name {
+    background-color: white;
+    border-radius: 0px 0px 12px 12px;
+    width: 100%;
+    height: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+}
+
+.name p {
+    color: black;
+    font-size: 18px;
+    font-family: "Rakkas", serif;
+    margin: 5px 0;
+}
+
+/* Buttons */
+.prev, .next {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 30px;
+    padding: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.prev:hover, .next:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.prev { left: 0; }
+.next { right: 0; }
+
+/* Hover Effect */
+.grid:hover {
+    transform: scale(1.05);
+    box-shadow: 2px 2px 20px rgb(240, 234, 234);
+}
+
+/* Responsive Design */
+/* Laptop: 3 Cards Visible */
+@media (min-width: 1025px) {
+    .team-slider {
+        justify-content: center;
+        flex-wrap: nowrap;
+        overflow-x: hidden;
+    }
+    .grid {
+        flex: 0 0 calc(33.33% - 2rem);
+    }
+}
+
+/* Tablet: 2 Cards Visible */
+@media (max-width: 1024px) {
+    .team-slider {
+        justify-content: center;
+        flex-wrap: nowrap;
+        overflow-x: hidden;
+    }
+    .grid {
+        flex: 0 0 calc(50% - 2rem);
+    }
+}
+
+/* Phone: 1 Card Visible */
+@media (max-width: 767px) {
+    .team-slider {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+    }
+    .grid {
+        flex: 0 0 100%;
+        scroll-snap-align: center;
+    }
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Team Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <h1 class="logo">Our Team</h1>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <ul class="nav-links">
+            <li><a href="#faculty">Faculty</a></li>
+            <li><a href="#executive">Executive Board</a></li>
+            <li><a href="#core">Core Members</a></li>
+        </ul>
+    </nav>
+
+    <!-- Faculty Section -->
+    <section class="team-section" id="faculty">
+        <h2>Faculty</h2>
+        <div class="team-grid">
+            <div class="team-card">
+                <img src="faculty1.jpg" alt="Rajesh Khanna">
+                <h3></h3>
+                <p>Professor</p>
+            </div>
+            <div class="team-card">
+                <img src="faculty2.jpg" alt="Suman Bhullar">
+                <h3></h3>
+                <p>Assistant Professor</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Executive Board Section -->
+    <section class="team-section" id="executive">
+        <h2>Executive Board</h2>
+        <div class="team-grid">
+            <div class="team-card">
+                <img src="executive1.jpg" alt="Executive Member">
+                <h3></h3>
+                <p>gen sec</p>
+            </div>
+            <div class="team-card">
+                <img src="executive2.jpg" alt="Executive Member">
+                <h3></h3>
+                <p>fin sec</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Members Section -->
+    <section class="team-section" id="core">
+        <h2>Core Members</h2>
+        <div class="team-grid">
+            <div class="team-card">
+                <img src="core1.jpg" alt="Core Member">
+                <h3></h3>
+                <p>Marketing head</p>
+            </div>
+            <div class="team-card">
+                <img src="core2.jpg" alt="Core Member">
+                <h3></h3>
+                <p>Design head</p>
+            </div>
+            <div class="team-card">
+                <img src="core3.jpg" alt="Core Member">
+                <h3></h3>
+                <p>Tech head</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector(".nav-links").classList.toggle("active");
+        }
+    </script>
+
+</body>
+</html>

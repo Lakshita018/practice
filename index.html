@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Scrolling Carousel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #7dbbc3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 80%;
+            overflow: hidden;
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            will-change: transform;
+        }
+
+        .card {
+            min-width: 30%; /* Default: 3 cards visible */
+            margin: 10px;
+            background-color: #f4c842;
+            border-radius: 15px;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 50%;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .arrow-left {
+            left: 0;
+        }
+
+        .arrow-right {
+            right: 0;
+        }
+
+        @media (max-width: 1024px) {
+            .card {
+                min-width: 45%; /* 2 cards visible */
+            }
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                min-width: 90%; /* 1 card visible */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="carousel-container">
+        <button class="arrow arrow-left" onclick="moveLeft()">&#9664;</button>
+        <div class="carousel" id="carousel">
+            <!-- 9 Sample Cards (repeated for looping effect) -->
+            <div class="card"><img src="https://via.placeholder.com/150" alt="Person 1"><h3>Person 1</h3><p>Role 1</p></div>
+            <div class="card"><img src="https://via.placeholder.com/150" alt="Person 2"><h3>Person 2</h3><p>Role 2</p></div>
+            <div class="card"><img src="https://via.placeholder.com/150" alt="Person 3"><h3>Person 3</h3><p>Role 3</p></div>
+            <div class="card"><img src="https://via.placeholder.com/150" alt="Person 4"><h3>Person 4</h3><p>Role 4</p></div>
+            <div class="card"><img src="https://via.placeholder.com/150" alt="Person 5"><h3>Person 5</h3><p>Role 5</p></div>
+            <div class="card"><img src="https://via.placeholder.com/150" alt="Person 6"><h3>Person 6</h3><p>Role 6</p></div>
+            <div class="card"><img src="https://via.placeholder.com/150" alt="Person 7"><h3>Person 7</h3><p>Role 7</p></div>
+            <div class="card"><img src="https://via.placeholder.com/150" alt="Person 8"><h3>Person 8</h3><p>Role 8</p></div>
+            <div class="card"><img src="https://via.placeholder.com/150" alt="Person 9"><h3>Person 9</h3><p>Role 9</p></div>
+        </div>
+        <button class="arrow arrow-right" onclick="moveRight()">&#9654;</button>
+    </div>
+
+    <script>
+        const carousel = document.getElementById("carousel");
+        let scrollPosition = 0;
+        let cardWidth = document.querySelector('.card').offsetWidth + 20; // Includes margin
+        let totalCards = document.querySelectorAll('.card').length;
+
+        function updateCardWidth() {
+            cardWidth = document.querySelector('.card').offsetWidth + 20;
+        }
+
+        function moveRight() {
+            updateCardWidth();
+            if (scrollPosition < (totalCards - 1) * cardWidth) {
+                scrollPosition += cardWidth;
+            } else {
+                scrollPosition = 0; // Loop back to the first card
+            }
+            carousel.style.transform = `translateX(-${scrollPosition}px)`;
+        }
+
+        function moveLeft() {
+            updateCardWidth();
+            if (scrollPosition > 0) {
+                scrollPosition -= cardWidth;
+            } else {
+                scrollPosition = (totalCards - 1) * cardWidth; // Loop to last card
+            }
+            carousel.style.transform = `translateX(-${scrollPosition}px)`;
+        }
+
+        function autoScroll() {
+            moveRight();
+        }
+
+        let autoScrollInterval = setInterval(autoScroll, 3000); // Auto-scroll every 3 seconds
+
+        // Pause auto-scroll on hover
+        document.querySelector(".carousel-container").addEventListener("mouseenter", () => {
+            clearInterval(autoScrollInterval);
+        });
+
+        // Resume auto-scroll when mouse leaves
+        document.querySelector(".carousel-container").addEventListener("mouseleave", () => {
+            autoScrollInterval = setInterval(autoScroll, 3000);
+        });
+
+        // Adjust card width on window resize
+        window.addEventListener("resize", updateCardWidth);
+    </script>
+
+</body>
+</html>
